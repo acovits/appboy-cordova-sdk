@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-  id="cordova-plugin-appboy" version="2.27.0">
-  <name>Device</name>
+  id="appboy-cordova-sdk" version="2.27.0">
+  <name>appboy-cordova-sdk</name>
   <description>Appboy Cordova SDK</description>
   <license>MIT</license>
   <keywords>cordova,appboy</keywords>
   <js-module src="www/AppboyPlugin.js" name="AppboyPlugin">
-    <clobbers target="AppboyPlugin" />
+    <clobbers target="cordova.plugin.appboy" />
   </js-module>
 
   <!-- android -->
