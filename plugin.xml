@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-  id="cordova-plugin-appboy" version="2.27.0">
-  <name>Device</name>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-appboy" version="2.27.0">
+  <name>AppBoy</name>
   <description>Appboy Cordova SDK</description>
   <license>MIT</license>
   <keywords>cordova,appboy</keywords>
   <js-module src="www/AppboyPlugin.js" name="AppboyPlugin">
-    <clobbers target="AppboyPlugin" />
+    <clobbers target="cordova.plugins.appboy" />
   </js-module>
 
   <!-- android -->
@@ -36,7 +35,15 @@
 
   <!-- ios -->
   <platform name="ios">
-    <framework src="Appboy-iOS-SDK" type="podspec" spec="~> 4.4.0" />
+    <!-- <framework src="Appboy-iOS-SDK" type="podspec" spec="~> 4.4.0" /> -->
+    <podspec>
+      <config>
+        <source url="https://cdn.cocoapods.org/"/>
+      </config>
+      <pods>
+        <pod name="Appboy-iOS-SDK" spec="~> 4.4.0" />
+      </pods>
+    </podspec>
 
     <!-- frameworks -->
     <framework src="libz.dylib" />
@@ -44,8 +51,8 @@
     <framework src="QuartzCore.framework"/>
     <framework src="CoreImage.framework"/>
     <framework src="CoreText.framework"/>
-    <framework src="CoreTelephony.framework"  weak="true" />
-    <framework src="Social.framework"  weak="true" />
+    <framework src="CoreTelephony.framework" weak="true" />
+    <framework src="Social.framework" weak="true" />
     <framework src="Accounts.framework" weak="true" />
     <framework src="AdSupport.framework" weak="true" />
     <framework src="ImageIO.framework" weak="true" />
