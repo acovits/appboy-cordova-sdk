@@ -6,7 +6,7 @@
   <license>MIT</license>
   <keywords>cordova,appboy</keywords>
   <js-module src="www/AppboyPlugin.js" name="AppboyPlugin">
-    <clobbers target="AppboyPlugin" />
+    <clobbers target="cordova.plugins.appboy" />
   </js-module>
 
   <!-- android -->
