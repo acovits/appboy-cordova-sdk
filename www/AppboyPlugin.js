@@ -1,3 +1,9 @@
+
+function cdvexec(os, of, s, a, args) {
+	console.info("CDV", s, a, args);
+	cordova.exec(os, of, s, a, args);
+}
+
 var AppboyPlugin = function () {
 }
 
@@ -36,7 +42,7 @@ var AppboyPlugin = function () {
  * @param {string} userId - A unique identifier for this user.
  */
 AppboyPlugin.prototype.changeUser = function (userId) {
-	cordova.exec(null, null, "AppboyPlugin", "changeUser", [userId]);
+	cdvexec(null, null, "AppboyPlugin", "changeUser", [userId]);
 }
 
 /**
@@ -50,7 +56,7 @@ AppboyPlugin.prototype.changeUser = function (userId) {
 * @param {string} registrationId - The registration ID, or for apps integrating Baidu Cloud Push, the Baidu user id.
 */
 AppboyPlugin.prototype.registerAppboyPushMessages = function (gcmRegistrationID) {
-	cordova.exec(null, null, "AppboyPlugin", "registerAppboyPushMessages", [gcmRegistrationID]);
+	cdvexec(null, null, "AppboyPlugin", "registerAppboyPushMessages", [gcmRegistrationID]);
 }
 
 /**
@@ -64,7 +70,7 @@ AppboyPlugin.prototype.registerAppboyPushMessages = function (gcmRegistrationID)
  *      Values can be numeric, boolean, or strings 255 characters or shorter.
  */
 AppboyPlugin.prototype.logCustomEvent = function (eventName, eventProperties) {
-	cordova.exec(null, null, "AppboyPlugin", "logCustomEvent", [eventName, eventProperties]);
+	cdvexec(null, null, "AppboyPlugin", "logCustomEvent", [eventName, eventProperties]);
 }
 
 /**
@@ -92,7 +98,7 @@ AppboyPlugin.prototype.logCustomEvent = function (eventName, eventProperties) {
  *      Values can be numeric, boolean, or strings 255 characters or shorter.
  */
 AppboyPlugin.prototype.logPurchase = function (productId, price, currencyCode, quantity, purchaseProperties) {
-	cordova.exec(null, null, "AppboyPlugin", "logPurchase", [productId, price, currencyCode, quantity, purchaseProperties]);
+	cdvexec(null, null, "AppboyPlugin", "logPurchase", [productId, price, currencyCode, quantity, purchaseProperties]);
 }
 
 // Appboy user methods
@@ -100,7 +106,7 @@ AppboyPlugin.prototype.logPurchase = function (productId, price, currencyCode, q
  * Sets the attribution information for the user. For in apps that have an install tracking integration.
  */
 AppboyPlugin.prototype.setUserAttributionData = function (network, campaign, adgroup, creative) {
-	cordova.exec(null, null, "AppboyPlugin", "setUserAttributionData", [network, campaign, adgroup, creative]);
+	cdvexec(null, null, "AppboyPlugin", "setUserAttributionData", [network, campaign, adgroup, creative]);
 }
 
 /**
@@ -113,22 +119,22 @@ AppboyPlugin.prototype.setUserAttributionData = function (network, campaign, adg
  *    Passing a null value will remove this custom attribute from the user.
  */
 AppboyPlugin.prototype.setCustomUserAttribute = function (key, value) {
-	var valueType = typeof(value);
+	var valueType = typeof (value);
 	if (value instanceof Date) {
-  		cordova.exec(null, null, "AppboyPlugin", "setDateCustomUserAttribute", [key, Math.floor(value.getTime() / 1000)]);
-  	} else if (value instanceof Array) {
-  		cordova.exec(null, null, "AppboyPlugin", "setCustomUserAttributeArray", [key, value]);
-  	} else if (valueType === "boolean") {
-  		cordova.exec(null, null, "AppboyPlugin", "setBoolCustomUserAttribute", [key, value]);
-  	} else if (valueType === "string") {
-  		cordova.exec(null, null, "AppboyPlugin", "setStringCustomUserAttribute", [key, value]);
-  	} else if (valueType === "number") {
-  		if (parseInt(value) === parseFloat(value)) {
-  			cordova.exec(null, null, "AppboyPlugin", "setIntCustomUserAttribute", [key, value]);
-  		} else {
-  			cordova.exec(null, null, "AppboyPlugin", "setDoubleCustomUserAttribute", [key, value]);
-  		}
-  	}
+		cdvexec(null, null, "AppboyPlugin", "setDateCustomUserAttribute", [key, Math.floor(value.getTime() / 1000)]);
+	} else if (value instanceof Array) {
+		cdvexec(null, null, "AppboyPlugin", "setCustomUserAttributeArray", [key, value]);
+	} else if (valueType === "boolean") {
+		cdvexec(null, null, "AppboyPlugin", "setBoolCustomUserAttribute", [key, value]);
+	} else if (valueType === "string") {
+		cdvexec(null, null, "AppboyPlugin", "setStringCustomUserAttribute", [key, value]);
+	} else if (valueType === "number") {
+		if (parseInt(value) === parseFloat(value)) {
+			cdvexec(null, null, "AppboyPlugin", "setIntCustomUserAttribute", [key, value]);
+		} else {
+			cdvexec(null, null, "AppboyPlugin", "setDoubleCustomUserAttribute", [key, value]);
+		}
+	}
 }
 
 /**
@@ -141,7 +147,7 @@ AppboyPlugin.prototype.setCustomUserAttribute = function (key, value) {
  * @param {integer} - May be negative to decrement.
  */
 AppboyPlugin.prototype.incrementCustomUserAttribute = function (key, value) {
-	cordova.exec(null, null, "AppboyPlugin", "incrementCustomUserAttribute", [key, value]);
+	cdvexec(null, null, "AppboyPlugin", "incrementCustomUserAttribute", [key, value]);
 }
 
 /**
@@ -149,7 +155,7 @@ AppboyPlugin.prototype.incrementCustomUserAttribute = function (key, value) {
  * @param {string} firstName - Limited to 255 characters in length.
  */
 AppboyPlugin.prototype.setFirstName = function (firstName) {
-	cordova.exec(null, null, "AppboyPlugin", "setFirstName", [firstName]);
+	cdvexec(null, null, "AppboyPlugin", "setFirstName", [firstName]);
 }
 
 /**
@@ -157,7 +163,7 @@ AppboyPlugin.prototype.setFirstName = function (firstName) {
  * @param {string} lastName - Limited to 255 characters in length.
  */
 AppboyPlugin.prototype.setLastName = function (lastName) {
-	cordova.exec(null, null, "AppboyPlugin", "setLastName", [lastName]);
+	cdvexec(null, null, "AppboyPlugin", "setLastName", [lastName]);
 }
 
 /**
@@ -165,7 +171,7 @@ AppboyPlugin.prototype.setLastName = function (lastName) {
  * @param {string} email - Must pass RFC-5322 email address validation.
  */
 AppboyPlugin.prototype.setEmail = function (email) {
-	cordova.exec(null, null, "AppboyPlugin", "setEmail", [email]);
+	cdvexec(null, null, "AppboyPlugin", "setEmail", [email]);
 }
 
 /**
@@ -173,7 +179,7 @@ AppboyPlugin.prototype.setEmail = function (email) {
  * @param {ab.User.Genders} gender - Generally 'm' or 'f'.
  */
 AppboyPlugin.prototype.setGender = function (gender) {
-	cordova.exec(null, null, "AppboyPlugin", "setGender", [gender]);
+	cdvexec(null, null, "AppboyPlugin", "setGender", [gender]);
 }
 
 /**
@@ -181,7 +187,7 @@ AppboyPlugin.prototype.setGender = function (gender) {
  * @param {string} country - Limited to 255 characters in length.
  */
 AppboyPlugin.prototype.setCountry = function (country) {
-	cordova.exec(null, null, "AppboyPlugin", "setCountry", [country]);
+	cdvexec(null, null, "AppboyPlugin", "setCountry", [country]);
 }
 
 /**
@@ -189,7 +195,7 @@ AppboyPlugin.prototype.setCountry = function (country) {
  * @param {string} homeCity - Limited to 255 characters in length.
  */
 AppboyPlugin.prototype.setHomeCity = function (homeCity) {
-	cordova.exec(null, null, "AppboyPlugin", "setHomeCity", [homeCity]);
+	cdvexec(null, null, "AppboyPlugin", "setHomeCity", [homeCity]);
 }
 
 /**
@@ -198,7 +204,7 @@ AppboyPlugin.prototype.setHomeCity = function (homeCity) {
  *    contains only numbers, whitespace, and the following special characters +.-()
  */
 AppboyPlugin.prototype.setPhoneNumber = function (phoneNumber) {
-	cordova.exec(null, null, "AppboyPlugin", "setPhoneNumber", [phoneNumber]);
+	cdvexec(null, null, "AppboyPlugin", "setPhoneNumber", [phoneNumber]);
 }
 
 /**
@@ -207,7 +213,7 @@ AppboyPlugin.prototype.setPhoneNumber = function (phoneNumber) {
  * @param {string} avatarImageUrl
  */
 AppboyPlugin.prototype.setAvatarImageUrl = function (avatarImageUrl) {
-	cordova.exec(null, null, "AppboyPlugin", "setAvatarImageUrl", [avatarImageUrl]);
+	cdvexec(null, null, "AppboyPlugin", "setAvatarImageUrl", [avatarImageUrl]);
 }
 
 /**
@@ -217,7 +223,7 @@ AppboyPlugin.prototype.setAvatarImageUrl = function (avatarImageUrl) {
  * @param {integer} day
  */
 AppboyPlugin.prototype.setDateOfBirth = function (year, month, day) {
-	cordova.exec(null, null, "AppboyPlugin", "setDateOfBirth", [year, month, day]);
+	cdvexec(null, null, "AppboyPlugin", "setDateOfBirth", [year, month, day]);
 }
 
 /**
@@ -226,7 +232,7 @@ AppboyPlugin.prototype.setDateOfBirth = function (year, month, day) {
  *    opted-in, subscribed, or unsubscribed).
  */
 AppboyPlugin.prototype.setPushNotificationSubscriptionType = function (notificationSubscriptionType) {
-	cordova.exec(null, null, "AppboyPlugin", "setPushNotificationSubscriptionType", [notificationSubscriptionType]);
+	cdvexec(null, null, "AppboyPlugin", "setPushNotificationSubscriptionType", [notificationSubscriptionType]);
 }
 
 /**
@@ -235,7 +241,7 @@ AppboyPlugin.prototype.setPushNotificationSubscriptionType = function (notificat
  *    opted-in, subscribed, or unsubscribed).
  */
 AppboyPlugin.prototype.setEmailNotificationSubscriptionType = function (notificationSubscriptionType) {
-	cordova.exec(null, null, "AppboyPlugin", "setEmailNotificationSubscriptionType", [notificationSubscriptionType]);
+	cdvexec(null, null, "AppboyPlugin", "setEmailNotificationSubscriptionType", [notificationSubscriptionType]);
 }
 
 /**
@@ -246,7 +252,7 @@ AppboyPlugin.prototype.setEmailNotificationSubscriptionType = function (notifica
  *    begin with a $, and can only contain alphanumeric characters and punctuation.
  */
 AppboyPlugin.prototype.addToCustomUserAttributeArray = function (key, value) {
-	cordova.exec(null, null, "AppboyPlugin", "addToCustomAttributeArray", [key, value]);
+	cdvexec(null, null, "AppboyPlugin", "addToCustomAttributeArray", [key, value]);
 }
 
 /**
@@ -257,7 +263,7 @@ AppboyPlugin.prototype.addToCustomUserAttributeArray = function (key, value) {
  *    cannot beging with a $, and can only contain alphanumeric characters and punctuation.
  */
 AppboyPlugin.prototype.removeFromCustomUserAttributeArray = function (key, value) {
-	cordova.exec(null, null, "AppboyPlugin", "removeFromCustomAttributeArray", [key, value]);
+	cdvexec(null, null, "AppboyPlugin", "removeFromCustomAttributeArray", [key, value]);
 }
 
 /**
@@ -266,7 +272,7 @@ AppboyPlugin.prototype.removeFromCustomUserAttributeArray = function (key, value
  *    a $, and can only contain alphanumeric characters and punctuation.
  */
 AppboyPlugin.prototype.unsetCustomUserAttribute = function (key) {
-	cordova.exec(null, null, "AppboyPlugin", "unsetCustomUserAttribute", [key]);
+	cdvexec(null, null, "AppboyPlugin", "unsetCustomUserAttribute", [key]);
 }
 
 /**
@@ -275,7 +281,7 @@ AppboyPlugin.prototype.unsetCustomUserAttribute = function (key) {
  * @param {string} label - A label for the alias. e.g. the source of the alias, like "internal_id"
  */
 AppboyPlugin.prototype.addAlias = function (alias, label) {
-	cordova.exec(null, null, "AppboyPlugin", "addAlias", [alias, label]);
+	cdvexec(null, null, "AppboyPlugin", "addAlias", [alias, label]);
 }
 
 // Other
@@ -283,14 +289,14 @@ AppboyPlugin.prototype.addAlias = function (alias, label) {
  * Launches the News Feed UI element.
  */
 AppboyPlugin.prototype.launchNewsFeed = function () {
-	cordova.exec(null, null, "AppboyPlugin", "launchNewsFeed", []);
+	cdvexec(null, null, "AppboyPlugin", "launchNewsFeed", []);
 }
 
 /**
  * Returns array of serialized card items
  */
 AppboyPlugin.prototype.getNewsFeed = function (successCallback, errorCallback) {
-  cordova.exec(successCallback, errorCallback, "AppboyPlugin", "getNewsFeed", ['all']);
+	cdvexec(successCallback, errorCallback, "AppboyPlugin", "getNewsFeed", ['all']);
 }
 
 // News Feed methods
@@ -299,35 +305,35 @@ AppboyPlugin.prototype.getNewsFeed = function (successCallback, errorCallback) {
 * Gets the number of unread News Feed Cards. The result is returned as an integer argument to the successCallback function. The card count uses the cards present in the cache. News Feed cards are not refreshed as a result of this call.
 */
 AppboyPlugin.prototype.getNewsFeedUnreadCount = function (successCallback, errorCallback) {
-  cordova.exec(successCallback, errorCallback, "AppboyPlugin", "getUnreadCardCountForCategories", ['all']);
+	cdvexec(successCallback, errorCallback, "AppboyPlugin", "getUnreadCardCountForCategories", ['all']);
 }
 
 /**
 * Gets the number of News Feed Cards. The result is returned as an integer argument to the successCallback function. The card count uses the cards present in the cache. News Feed cards are not refreshed as a result of this call.
 **/
 AppboyPlugin.prototype.getNewsFeedCardCount = function (successCallback, errorCallback) {
-  cordova.exec(successCallback, errorCallback, "AppboyPlugin", "getCardCountForCategories", ['all']);
+	cdvexec(successCallback, errorCallback, "AppboyPlugin", "getCardCountForCategories", ['all']);
 }
 
 /**
 * Gets the number of News Feed Cards for a category. The result is returned as an integer argument to the successCallback function. The card count uses the cards present in the cache. News Feed cards are not refreshed as a result of this call.
 **/
 AppboyPlugin.prototype.getCardCountForCategories = function (successCallback, errorCallback, cardCategories) {
-  cordova.exec(successCallback, errorCallback, "AppboyPlugin", "getCardCountForCategories", cardCategories);
+	cdvexec(successCallback, errorCallback, "AppboyPlugin", "getCardCountForCategories", cardCategories);
 }
 
 /**
 * Gets the number of unread News Feed Cards for a category. The result is returned as an integer argument to the successCallback function. The card count uses the cards present in the cache. News Feed cards are not refreshed as a result of this call.
 */
 AppboyPlugin.prototype.getUnreadCardCountForCategories = function (successCallback, errorCallback, cardCategories) {
-  cordova.exec(successCallback, errorCallback, "AppboyPlugin", "getUnreadCardCountForCategories", cardCategories);
+	cdvexec(successCallback, errorCallback, "AppboyPlugin", "getUnreadCardCountForCategories", cardCategories);
 }
 
 /**
 * Wipes Data on the Braze SDK. On iOS, the SDK will be disabled for the rest of the app run.
 */
 AppboyPlugin.prototype.wipeData = function () {
-  cordova.exec(null, null, "AppboyPlugin", "wipeData");
+	cdvexec(null, null, "AppboyPlugin", "wipeData");
 }
 
 /**
@@ -335,136 +341,136 @@ AppboyPlugin.prototype.wipeData = function () {
 * On iOS, the SDK will be enabled only after a subsequent call to startWithApiKey().
 */
 AppboyPlugin.prototype.enableSdk = function () {
-  cordova.exec(null, null, "AppboyPlugin", "enableSdk");
+	cdvexec(null, null, "AppboyPlugin", "enableSdk");
 }
 
 /**
 * Disables the Braze SDK immediately.
 */
 AppboyPlugin.prototype.disableSdk = function () {
-  cordova.exec(null, null, "AppboyPlugin", "disableSdk");
+	cdvexec(null, null, "AppboyPlugin", "disableSdk");
 }
 
 /**
 * Requests that the Braze SDK immediately flush any pending data.
 */
 AppboyPlugin.prototype.requestImmediateDataFlush = function () {
-  cordova.exec(null, null, "AppboyPlugin", "requestImmediateDataFlush");
+	cdvexec(null, null, "AppboyPlugin", "requestImmediateDataFlush");
 }
 
 /**
 * Requests the latest Content Cards from the Braze SDK server.
 */
 AppboyPlugin.prototype.requestContentCardsRefresh = function () {
-	cordova.exec(null, null, "AppboyPlugin", "requestContentCardsRefresh");
+	cdvexec(null, null, "AppboyPlugin", "requestContentCardsRefresh");
 }
 
 /**
 * Retrieves Content Cards from the Braze SDK. This will return the latest list of cards from the server.
 */
 AppboyPlugin.prototype.getContentCardsFromServer = function (successCallback, errorCallback) {
-	cordova.exec(successCallback, errorCallback, "AppboyPlugin", "getContentCardsFromServer");
+	cdvexec(successCallback, errorCallback, "AppboyPlugin", "getContentCardsFromServer");
 }
 
 /**
 * Retrieves Content Cards from the Braze SDK. This will return the latest list of cards from the cache.
 */
 AppboyPlugin.prototype.getContentCardsFromCache = function (successCallback, errorCallback) {
-	cordova.exec(successCallback, errorCallback, "AppboyPlugin", "getContentCardsFromCache");
+	cdvexec(successCallback, errorCallback, "AppboyPlugin", "getContentCardsFromCache");
 }
 
 /**
  * Launches a default Content Cards UI element.
  */
 AppboyPlugin.prototype.launchContentCards = function () {
-	cordova.exec(null, null, "AppboyPlugin", "launchContentCards");
+	cdvexec(null, null, "AppboyPlugin", "launchContentCards");
 }
 
 /**
  * Logs a Content Content feed displayed event.
  */
 AppboyPlugin.prototype.logContentCardsDisplayed = function () {
-	cordova.exec(null, null, "AppboyPlugin", "logContentCardsDisplayed");
+	cdvexec(null, null, "AppboyPlugin", "logContentCardsDisplayed");
 }
 
 /**
  * Logs a click for the given Content Card id.
  */
 AppboyPlugin.prototype.logContentCardClicked = function (cardId) {
-	cordova.exec(null, null, "AppboyPlugin", "logContentCardClicked", [cardId]);
+	cdvexec(null, null, "AppboyPlugin", "logContentCardClicked", [cardId]);
 }
 
 /**
  * Logs an impression for the given Content Card id.
  */
 AppboyPlugin.prototype.logContentCardImpression = function (cardId) {
-	cordova.exec(null, null, "AppboyPlugin", "logContentCardImpression", [cardId]);
+	cdvexec(null, null, "AppboyPlugin", "logContentCardImpression", [cardId]);
 }
 
 /**
  * Logs a dismissal for the given Content Card id.
  */
 AppboyPlugin.prototype.logContentCardDismissed = function (cardId) {
-	cordova.exec(null, null, "AppboyPlugin", "logContentCardDismissed", [cardId]);
+	cdvexec(null, null, "AppboyPlugin", "logContentCardDismissed", [cardId]);
 }
 
 /**
  * Sets the language for a user. Language Strings should be valid ISO 639-1 language codes. See loc.gov/standards/iso639-2/php/code_list.php.
  */
 AppboyPlugin.prototype.setLanguage = function (language) {
-	cordova.exec(null, null, "AppboyPlugin", "setLanguage", [language]);
+	cdvexec(null, null, "AppboyPlugin", "setLanguage", [language]);
 }
 
 /**
  * Adds user to given subscription group.
  */
 AppboyPlugin.prototype.addToSubscriptionGroup = function (groupId) {
-	cordova.exec(null, null, "AppboyPlugin", "addToSubscriptionGroup", [groupId]);
+	cdvexec(null, null, "AppboyPlugin", "addToSubscriptionGroup", [groupId]);
 }
 
 /**
  * Removes user from given subscription group.
  */
 AppboyPlugin.prototype.removeFromSubscriptionGroup = function (groupId) {
-	cordova.exec(null, null, "AppboyPlugin", "removeFromSubscriptionGroup", [groupId]);
+	cdvexec(null, null, "AppboyPlugin", "removeFromSubscriptionGroup", [groupId]);
 }
 
 /**
  * @return An app specific ID that is stored on the device.
  */
 AppboyPlugin.prototype.getDeviceId = function (successCallback, errorCallback) {
-	cordova.exec(successCallback, errorCallback, "AppboyPlugin", "getDeviceId");
+	cdvexec(successCallback, errorCallback, "AppboyPlugin", "getDeviceId");
 }
 
 /**
  * @return Starts SDK session tracking if previously disabled. Only used for Android.
  */
 AppboyPlugin.prototype.startSessionTracking = function () {
-	cordova.exec(null, null, "AppboyPlugin", "startSessionTracking");
+	cdvexec(null, null, "AppboyPlugin", "startSessionTracking");
 }
 
 AppboyPlugin.prototype['NotificationSubscriptionTypes'] = {
-  "OPTED_IN": 'opted_in',
-  "SUBSCRIBED": 'subscribed',
-  "UNSUBSCRIBED": 'unsubscribed'
+	"OPTED_IN": 'opted_in',
+	"SUBSCRIBED": 'subscribed',
+	"UNSUBSCRIBED": 'unsubscribed'
 };
 
 AppboyPlugin.prototype['Genders'] = {
-  "FEMALE": 'f',
-  "MALE": 'm',
-  "NOT_APPLICABLE": 'n',
-  "OTHER": 'o',
-  "PREFER_NOT_TO_SAY": 'p',
-  "UNKNOWN": 'u'
+	"FEMALE": 'f',
+	"MALE": 'm',
+	"NOT_APPLICABLE": 'n',
+	"OTHER": 'o',
+	"PREFER_NOT_TO_SAY": 'p',
+	"UNKNOWN": 'u'
 };
 
 AppboyPlugin.prototype['CardCategories'] = {
-  "ADVERTISING": 'advertising',
-  "ANNOUNCEMENTS": 'announcements',
-  "NEWS": 'news',
-  "SOCIAL": 'social',
-  "NO_CATEGORY": 'no_category',
-  "ALL" : 'all'
+	"ADVERTISING": 'advertising',
+	"ANNOUNCEMENTS": 'announcements',
+	"NEWS": 'news',
+	"SOCIAL": 'social',
+	"NO_CATEGORY": 'no_category',
+	"ALL": 'all'
 };
 
 AppboyPlugin.prototype['ContentCardTypes'] = {
